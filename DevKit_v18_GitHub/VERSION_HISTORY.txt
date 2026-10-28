@@ -1,0 +1,11 @@
+DevKit v18 source preparation — 28 October 2026
+
+4fe98758ea6a169f547c906bea455f99efd1aff3 Recover complete editable source and verify all 22 runtime hashes
+08df015f7b7dea98c6185b3b990a5430e29b8b51 Preserve original DevKit v18 review baseline
+
+The bundle contains the complete two-commit local history.
+Commit identity labels automated source recovery; original author credits remain in AUTHORS.md and ModuleInfo.txt.
+
+All 22 runtime files rebuilt from source with original hashes.
+No original/prebuilt runtime files are needed by the build.
+RScript GUI, GitHub hosted workflow and game execution were not performed.

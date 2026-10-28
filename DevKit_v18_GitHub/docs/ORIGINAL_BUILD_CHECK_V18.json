@@ -1,0 +1,23 @@
+{
+  "status": "PASS (static)",
+  "runtime": "NOT TESTED",
+  "baseline": "V17 reported working by user",
+  "source_sha256": "8eb0254ec380faf9aac4b64db08d60554539cdcec0ec943f75b348f3315eeb9d",
+  "changed_mod_files": [
+    "DevKit/CFG/Main.dat"
+  ],
+  "changed_handlers": [
+    "teleport selection",
+    "opener result dispatch",
+    "one-shot destination completion"
+  ],
+  "native_selection": "ListBox(title, array); zero-based index, cancel=-1",
+  "request_transport": "native interface byte state: 2=space, 3=enabled idle, 4..254=planet index 0..250; 255 reserved",
+  "planet_filter": "target star faction !=1, planet owner not 5/6, population>0",
+  "target_revalidated_before_transfer": true,
+  "transfer_after_old_forms_close": true,
+  "wheel_dll_unchanged": true,
+  "button_restore_state": 3,
+  "cancel_clears_teleport_order": true,
+  "dat_roundtrip": "PASS"
+}

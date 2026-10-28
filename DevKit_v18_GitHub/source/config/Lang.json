@@ -1,0 +1,1785 @@
+{
+  "format": "blockpar",
+  "seed": -577017008,
+  "root": {
+    "entries": [
+      {
+        "kind": "block",
+        "name": "ActCodeBlocksList",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "HybridDroidActCode",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "parameter",
+                    "name": "00",
+                    "value": "[t_OnDealingFatalDamage,t_OnStep|5]",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "01",
+                    "value": "dword cur_item = CurItem();",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "02",
+                    "value": "dword cur_ship = ScriptItemActShip();",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "03",
+                    "value": "if(ItemIsInUse(cur_item) && !ItemIsBroken(cur_item))",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "block",
+                    "name": "04",
+                    "value": {
+                      "entries": [
+                        {
+                          "kind": "parameter",
+                          "name": "01",
+                          "value": "int att_bonus = ScriptItemData(cur_item, 1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "02",
+                          "value": "int def_bonus = ScriptItemData(cur_item, 2);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "03",
+                          "value": "int mov_bonus = ScriptItemData(cur_item, 3);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "04",
+                          "value": "int last_bonus = ScriptItemTextData(cur_item, 1);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "05",
+                          "value": "if(ScriptItemActionType(t_OnDealingFatalDamage))",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "06",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "att_bonus = att_bonus + 100;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "02",
+                                "value": "if((att_bonus + def_bonus + mov_bonus) > 1000)",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "block",
+                                "name": "03",
+                                "value": {
+                                  "entries": [
+                                    {
+                                      "kind": "parameter",
+                                      "name": "01",
+                                      "value": "att_bonus = (99 * att_bonus) / 100;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "02",
+                                      "value": "def_bonus = (99 * def_bonus) / 100;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "03",
+                                      "value": "mov_bonus = (99 * mov_bonus) / 100;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    }
+                                  ],
+                                  "sorted": true
+                                },
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "04",
+                                "value": "ScriptItemData(cur_item, 1, att_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "05",
+                                "value": "ScriptItemData(cur_item, 2, def_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "06",
+                                "value": "ScriptItemData(cur_item, 3, mov_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "07",
+                                "value": "exit;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "07",
+                          "value": "if(IsPlayer(cur_ship))",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "08",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "int check = GalaxyEvents() - 1;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "02",
+                                "value": "while(check >= 0)",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "block",
+                                "name": "03",
+                                "value": {
+                                  "entries": [
+                                    {
+                                      "kind": "parameter",
+                                      "name": "01",
+                                      "value": "if(GalaxyEventDate(check) >= CurTurn())",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "block",
+                                      "name": "02",
+                                      "value": {
+                                        "entries": [
+                                          {
+                                            "kind": "parameter",
+                                            "name": "01",
+                                            "value": "if(GalaxyEventType(check) == 'PlayerAssistKillsShip')",
+                                            "sort_meta": [
+                                              0,
+                                              1
+                                            ]
+                                          },
+                                          {
+                                            "kind": "block",
+                                            "name": "02",
+                                            "value": {
+                                              "entries": [
+                                                {
+                                                  "kind": "parameter",
+                                                  "name": "01",
+                                                  "value": "att_bonus = att_bonus + 100;",
+                                                  "sort_meta": [
+                                                    0,
+                                                    1
+                                                  ]
+                                                }
+                                              ],
+                                              "sorted": true
+                                            },
+                                            "sort_meta": [
+                                              0,
+                                              1
+                                            ]
+                                          }
+                                        ],
+                                        "sorted": true
+                                      },
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "03",
+                                      "value": "if(GalaxyEventDate(check) < CurTurn())",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "block",
+                                      "name": "04",
+                                      "value": {
+                                        "entries": [
+                                          {
+                                            "kind": "parameter",
+                                            "name": "01",
+                                            "value": "check = 0;",
+                                            "sort_meta": [
+                                              0,
+                                              1
+                                            ]
+                                          }
+                                        ],
+                                        "sorted": true
+                                      },
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "05",
+                                      "value": "check = check - 1;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    }
+                                  ],
+                                  "sorted": true
+                                },
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "09",
+                          "value": "def_bonus = def_bonus + HullDamage(cur_ship);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "10",
+                          "value": "mov_bonus = mov_bonus + 30 * PlayerQuestInProgress();",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "11",
+                          "value": "check = 0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "12",
+                          "value": "while(check < 8)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "13",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "mov_bonus = mov_bonus + GoodsCount(cur_ship, check) / 20;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "02",
+                                "value": "check = check + 1;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "14",
+                          "value": "if(ShipGetBad(cur_ship) && ShipSpeed(cur_ship))",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "15",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "if(ShipSpeed(ShipGetBad(cur_ship)) > ShipSpeed(cur_ship))",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "block",
+                                "name": "02",
+                                "value": {
+                                  "entries": [
+                                    {
+                                      "kind": "parameter",
+                                      "name": "01",
+                                      "value": "mov_bonus = mov_bonus + 100 * ShipSpeed(ShipGetBad(cur_ship)) / ShipSpeed(cur_ship);",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    }
+                                  ],
+                                  "sorted": true
+                                },
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "16",
+                          "value": "if(ShipInHyperSpace(cur_ship))",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "17",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "mov_bonus = mov_bonus + 30;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "18",
+                          "value": "if((att_bonus + def_bonus + mov_bonus) > 1000)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "19",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "att_bonus = (99 * att_bonus) / 100;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "02",
+                                "value": "def_bonus = (99 * def_bonus) / 100;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "03",
+                                "value": "mov_bonus = (99 * mov_bonus) / 100;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "20",
+                          "value": "int sum_bonus = att_bonus + def_bonus + mov_bonus;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "21",
+                          "value": "int nearest_bonus_distance = 1000;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "22",
+                          "value": "int nearest_bonus = 6;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "23",
+                          "value": "check = 0;",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "24",
+                          "value": "while(check < 7)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "25",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "int cur_point_distance = abs(GetValueFromScript('PC_fem_rangers', 'points_a', check) - (att_bonus * 100) / sum_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "02",
+                                "value": "cur_point_distance = cur_point_distance + abs(GetValueFromScript('PC_fem_rangers', 'points_d', check) - (def_bonus * 100) / sum_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "03",
+                                "value": "cur_point_distance = cur_point_distance + abs(GetValueFromScript('PC_fem_rangers', 'points_m', check) - (mov_bonus * 100) / sum_bonus);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "04",
+                                "value": "if(cur_point_distance < nearest_bonus_distance)",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "block",
+                                "name": "05",
+                                "value": {
+                                  "entries": [
+                                    {
+                                      "kind": "parameter",
+                                      "name": "01",
+                                      "value": "nearest_bonus_distance = cur_point_distance;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "02",
+                                      "value": "nearest_bonus = check;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    }
+                                  ],
+                                  "sorted": true
+                                },
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "06",
+                                "value": "check = check + 1;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "26",
+                          "value": "if(nearest_bonus != last_bonus)",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "block",
+                          "name": "27",
+                          "value": {
+                            "entries": [
+                              {
+                                "kind": "parameter",
+                                "name": "01",
+                                "value": "if(~FindBonusByCustomTag(GetValueFromScript('PC_fem_rangers', 'points_bonus', nearest_bonus)))",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "block",
+                                "name": "02",
+                                "value": {
+                                  "entries": [
+                                    {
+                                      "kind": "parameter",
+                                      "name": "01",
+                                      "value": "SpecialToEquipment(FindBonusByCustomTag(GetValueFromScript('PC_fem_rangers', points_bonus, nearest_bonus)), cur_item);",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "02",
+                                      "value": "att_bonus = att_bonus / 2 + (sum_bonus * GetValueFromScript('PC_fem_rangers', 'points_a', nearest_bonus)) / 200;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "03",
+                                      "value": "def_bonus = def_bonus / 2 + (sum_bonus * GetValueFromScript('PC_fem_rangers', 'points_d', nearest_bonus)) / 200;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    },
+                                    {
+                                      "kind": "parameter",
+                                      "name": "04",
+                                      "value": "mov_bonus = mov_bonus / 2 + (sum_bonus * GetValueFromScript('PC_fem_rangers', 'points_m', nearest_bonus)) / 200;",
+                                      "sort_meta": [
+                                        0,
+                                        1
+                                      ]
+                                    }
+                                  ],
+                                  "sorted": true
+                                },
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "03",
+                                "value": "ShipCalcParam(cur_ship);",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "04",
+                                "value": "last_bonus = nearest_bonus;",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              },
+                              {
+                                "kind": "parameter",
+                                "name": "05",
+                                "value": "Ether(2, '6E34ABFA-A3A1-4512-B35B-89DD324A99C9', Format(CT('Script.PC_fem_rangers.325'), '<0' + '>', GetValueFromScript('PC_fem_rangers', 'mode_name', nearest_bonus)));",
+                                "sort_meta": [
+                                  0,
+                                  1
+                                ]
+                              }
+                            ],
+                            "sorted": true
+                          },
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "28",
+                          "value": "ScriptItemData(cur_item, 1, att_bonus);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "29",
+                          "value": "ScriptItemData(cur_item, 2, def_bonus);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "30",
+                          "value": "ScriptItemData(cur_item, 3, mov_bonus);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        },
+                        {
+                          "kind": "parameter",
+                          "name": "31",
+                          "value": "ScriptItemTextData(cur_item, 1, last_bonus);",
+                          "sort_meta": [
+                            0,
+                            1
+                          ]
+                        }
+                      ],
+                      "sorted": true
+                    },
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  }
+                ],
+                "sorted": true
+              },
+              "sort_meta": [
+                0,
+                1
+              ]
+            }
+          ],
+          "sorted": true
+        },
+        "sort_meta": [
+          0,
+          1
+        ]
+      },
+      {
+        "kind": "block",
+        "name": "Script",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "Mod_DevKit",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "parameter",
+                    "name": "100",
+                    "value": "Военный",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "101",
+                    "value": "Пиратский",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "102",
+                    "value": "Рейнджер",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "103",
+                    "value": "Транспортный",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "104",
+                    "value": "Выполнено",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "105",
+                    "value": "Консоль",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "106",
+                    "value": "Карта открыта",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "107",
+                    "value": "На сколько?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "110",
+                    "value": "Открыть всю карту",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "111",
+                    "value": "Ввести нужный размер",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "112",
+                    "value": "Повысить коалиционное",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "113",
+                    "value": "Повысить пиратское",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "114",
+                    "value": "Стать Бароном",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "115",
+                    "value": "Стать Адмиралом",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "116",
+                    "value": "Какого тех.уровня?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "117",
+                    "value": "A",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "118",
+                    "value": "B",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "119",
+                    "value": "C",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "12",
+                    "value": "Раса",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "120",
+                    "value": "D",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "121",
+                    "value": "E",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "122",
+                    "value": "F",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "123",
+                    "value": "G",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "124",
+                    "value": "H",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "125",
+                    "value": "Базы созданы в данной системе",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "126",
+                    "value": "Ваш нод-счёт пополнен, а физические ноды доставлены в трюм",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "127",
+                    "value": "Ввести нужное количество",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "128",
+                    "value": "Читерный двигатель",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "129",
+                    "value": "Какой расы?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "13",
+                    "value": "Малоки",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "130",
+                    "value": "Люди",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "132",
+                    "value": "Пираты",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "133",
+                    "value": "Доминаторы",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "134",
+                    "value": "Неизвестные",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "135",
+                    "value": "Читерный радар",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "137",
+                    "value": "Какое количество?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "138",
+                    "value": "Какое количество нодов получить физически и на какое пополнить нод-счёт?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "14",
+                    "value": "Пеленги",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "141",
+                    "value": "Быстрое оборудования для тестинга",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "144",
+                    "value": "Телепортация в другую систему",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "146",
+                    "value": "Куда?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "147",
+                    "value": "Готово.",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "148",
+                    "value": "Никуда я телепортироваться не хочу",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "149",
+                    "value": "Голопроектор, Пульсар, Блинкер (модуль SubSpaceBase)",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "150",
+                    "value": "Убить пиратский клан",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "152",
+                    "value": "Из модуля ExpArts",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "153",
+                    "value": "Из модуля ExpAcryn",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "154",
+                    "value": "<0>",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "16",
+                    "value": "Феяне",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "17",
+                    "value": "Гаальцы",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "19",
+                    "value": "Получить двигатель",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "21",
+                    "value": "Получить сканер",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "22",
+                    "value": "Получить радар",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "23",
+                    "value": "Получить дроид",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "24",
+                    "value": "Получить захват",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "27",
+                    "value": "Какое именно?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "28",
+                    "value": "Получить оборудование",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "29",
+                    "value": "Получить корпус",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "3",
+                    "value": "DevKit",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "30",
+                    "value": "Получить ГЗП",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "32",
+                    "value": "Деньги переведены",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "33",
+                    "value": "Получить деньги",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "34",
+                    "value": "Ввести нужную сумму",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "37",
+                    "value": "Получить артефакты",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "38",
+                    "value": "Только Транклюкатора",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "4",
+                    "value": "Функции для тестирования",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "42",
+                    "value": "Бак заправлен",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "43",
+                    "value": "Заправить бак",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "44",
+                    "value": "Выход",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "45",
+                    "value": "Получить всё сразу",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "46",
+                    "value": "Получить микромодули",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "47",
+                    "value": "Получить оружие",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "49",
+                    "value": "Оригинальное",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "52",
+                    "value": "Звание повышено",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "54",
+                    "value": "Повысить звание",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "57",
+                    "value": "Какие именно?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "58",
+                    "value": "Оригинальные",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "61",
+                    "value": "Создать базы",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "62",
+                    "value": "ЧД создана",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "63",
+                    "value": "Создать ЧД",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "65",
+                    "value": "Получить ноды",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "70",
+                    "value": "Артефакты доставлены в трюм",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "71",
+                    "value": "Микромодули доставлены в трюм",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "74",
+                    "value": "Создать планету",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "75",
+                    "value": "Загрузить антидоминатор программы",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "76",
+                    "value": "Программы загружены",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "79",
+                    "value": "Корпус расширен",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "8",
+                    "value": "Спасибо!",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "80",
+                    "value": "Увеличить размер корпуса",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "82",
+                    "value": "Починить оборудование",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "88",
+                    "value": "Экспериментальное оружие",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "9",
+                    "value": "Получить бак",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "90",
+                    "value": "Доставлено в трюм или на склад",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "92",
+                    "value": "Планета создана",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "93",
+                    "value": "Оборудование отремонтировано",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "94",
+                    "value": "Мабокит (Evolution)",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "95",
+                    "value": "Корпус Клещ (Expansion)",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "96",
+                    "value": "ФизГан (Expansion)",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "98",
+                    "value": "Какого типа?",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "99",
+                    "value": "Корпус Тень Империи",
+                    "sort_meta": [
+                      0,
+                      1
+                    ]
+                  }
+                ],
+                "sorted": true
+              },
+              "sort_meta": [
+                0,
+                1
+              ]
+            }
+          ],
+          "sorted": true
+        },
+        "sort_meta": [
+          0,
+          1
+        ]
+      }
+    ],
+    "sorted": true
+  }
+}

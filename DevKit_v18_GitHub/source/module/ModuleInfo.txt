@@ -1,0 +1,9 @@
+Name=DevKit
+Author=noname,Prolog_D
+Conflict=
+Dependence=UtilityFunctionsPack
+Priority=6
+Section=Твики
+Languages=Rus
+SmallDescription=DevKit - скрипт для тестирования при создании модулей
+FullDescription=DevKit - скрипт для более быстрого и удобного тестирования нужных функций. Используется при создании модулей.

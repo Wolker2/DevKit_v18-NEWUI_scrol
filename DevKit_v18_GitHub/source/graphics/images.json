@@ -1,0 +1,114 @@
+[
+  {
+    "file": "ButBrigdeA.gi",
+    "source_png": "source/graphics/ButBrigdeA.png",
+    "width": 80,
+    "height": 25,
+    "original_sha256": "281a435b0150c971f858cf1679c4336f286b1b6050655f52d6df8ea7664e7cb8"
+  },
+  {
+    "file": "ButBrigdeD.gi",
+    "source_png": "source/graphics/ButBrigdeD.png",
+    "width": 80,
+    "height": 25,
+    "original_sha256": "95e3b97fc69341c933f671a3a89317f0b9dfcadcfeaa8f2f8da5fae453bf8b4e"
+  },
+  {
+    "file": "ButBrigdeN.gi",
+    "source_png": "source/graphics/ButBrigdeN.png",
+    "width": 80,
+    "height": 25,
+    "original_sha256": "7a0f3b4f3de85283cdfc8c5caf629b298cdf3c8f322d7eb8454d0ff30ae22913"
+  },
+  {
+    "file": "DevKitArrowA.gi",
+    "source_png": "source/graphics/DevKitArrowA.png",
+    "width": 44,
+    "height": 32,
+    "original_sha256": "3311a1b12a8ebef1a7790eb6fa741983520a6c33e3ff081df6714fc819eceb31"
+  },
+  {
+    "file": "DevKitArrowD.gi",
+    "source_png": "source/graphics/DevKitArrowD.png",
+    "width": 44,
+    "height": 32,
+    "original_sha256": "6236db3e81b07829d417435c2c5d7865f0190ab456d3ad69d148352446668859"
+  },
+  {
+    "file": "DevKitArrowN.gi",
+    "source_png": "source/graphics/DevKitArrowN.png",
+    "width": 44,
+    "height": 32,
+    "original_sha256": "09ac1d44027b86060f9334de5ee10374b1dd3b3f2fc8ec20856509e3bdbc3384"
+  },
+  {
+    "file": "DevKitEndOpenA.gi",
+    "source_png": "source/graphics/DevKitEndOpenA.png",
+    "width": 48,
+    "height": 50,
+    "original_sha256": "fcdd6fced4c920fea065ef808a692aad328b07d6d46d56b016afeff8c31ad291"
+  },
+  {
+    "file": "DevKitEndOpenD.gi",
+    "source_png": "source/graphics/DevKitEndOpenD.png",
+    "width": 48,
+    "height": 50,
+    "original_sha256": "bdee0e4087b31ed212670057554f4e0f2a8ccda0cef1ad633e2ebd15c3a20ba4"
+  },
+  {
+    "file": "DevKitEndOpenN.gi",
+    "source_png": "source/graphics/DevKitEndOpenN.png",
+    "width": 48,
+    "height": 50,
+    "original_sha256": "703a7424ddb7f4faedf68569200748b4e08e9d4dba0539ac0daf0edfd77511e1"
+  },
+  {
+    "file": "DevKitNavA.gi",
+    "source_png": "source/graphics/DevKitNavA.png",
+    "width": 98,
+    "height": 32,
+    "original_sha256": "8df87a3207a3b6d0b4519996fb644eac5aca08a2c554dee6559f2633f5ad8e34"
+  },
+  {
+    "file": "DevKitNavD.gi",
+    "source_png": "source/graphics/DevKitNavD.png",
+    "width": 98,
+    "height": 32,
+    "original_sha256": "1fd5fa99dbea42e83a38d6a4c8638f7af6d86815ed7d6931eecd3c48f41b027e"
+  },
+  {
+    "file": "DevKitNavN.gi",
+    "source_png": "source/graphics/DevKitNavN.png",
+    "width": 98,
+    "height": 32,
+    "original_sha256": "94a9c26976d1ee641c3cf6b5cb02dda189b4381433d56364431a8663312eeae5"
+  },
+  {
+    "file": "DevKitPanelBG.gi",
+    "source_png": "source/graphics/DevKitPanelBG.png",
+    "width": 460,
+    "height": 480,
+    "original_sha256": "81955475d190785fb730053fb1a1548d9c458a3128af65f25800621ad02ffb10"
+  },
+  {
+    "file": "DevKitRowA.gi",
+    "source_png": "source/graphics/DevKitRowA.png",
+    "width": 412,
+    "height": 38,
+    "original_sha256": "79070e8fe52639ef30b68cab100d023530d03a48c1b718f3417b8cfa5d339058"
+  },
+  {
+    "file": "DevKitRowD.gi",
+    "source_png": "source/graphics/DevKitRowD.png",
+    "width": 412,
+    "height": 38,
+    "original_sha256": "a40166b88a0542c74dfc9514b9687794691ba4f551dbdf6e53a11d02cbc452a5"
+  },
+  {
+    "file": "DevKitRowN.gi",
+    "source_png": "source/graphics/DevKitRowN.png",
+    "width": 412,
+    "height": 38,
+    "original_sha256": "f02e14772f3d32e59f07be11afa55fa8e663ef2c2cd884bd38f59efa95ec2bb0"
+  }
+]

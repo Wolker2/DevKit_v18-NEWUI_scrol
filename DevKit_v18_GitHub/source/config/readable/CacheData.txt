@@ -1,0 +1,23 @@
+Bm {
+    FormShip2 {
+        ButBrigdeA=Mods\Tweaks\DevKit\DATA\FormShip2\ButBrigdeA.gi
+        ButBrigdeD=Mods\Tweaks\DevKit\DATA\FormShip2\ButBrigdeD.gi
+        ButBrigdeN=Mods\Tweaks\DevKit\DATA\FormShip2\ButBrigdeN.gi
+        DevKitArrowA=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitArrowA.gi
+        DevKitArrowD=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitArrowD.gi
+        DevKitArrowN=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitArrowN.gi
+        DevKitEndOpenA=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitEndOpenA.gi
+        DevKitEndOpenD=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitEndOpenD.gi
+        DevKitEndOpenN=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitEndOpenN.gi
+        DevKitNavA=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitNavA.gi
+        DevKitNavD=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitNavD.gi
+        DevKitNavN=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitNavN.gi
+        DevKitPanelBG=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitPanelBG.gi
+        DevKitRowA=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitRowA.gi
+        DevKitRowD=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitRowD.gi
+        DevKitRowN=Mods\Tweaks\DevKit\DATA\FormShip2\DevKitRowN.gi
+    }
+}
+Script {
+    Mod_DevKit=Mods\Tweaks\DevKit\DATA\Script\Mod_DevKit.scr
+}

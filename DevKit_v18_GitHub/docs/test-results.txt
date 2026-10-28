@@ -1,0 +1,12 @@
+test_all_graphics_roundtrip_and_pixel_edit (test_source_build.SourceBuildTests.test_all_graphics_roundtrip_and_pixel_edit) ... ok
+test_build_without_any_original_or_prebuilt_binary (test_source_build.SourceBuildTests.test_build_without_any_original_or_prebuilt_binary) ... ok
+test_editable_code_rebuilds_and_relocates_header (test_source_build.SourceBuildTests.test_editable_code_rebuilds_and_relocates_header) ... ok
+test_editable_variable_initialization_is_used (test_source_build.SourceBuildTests.test_editable_variable_initialization_is_used) ... ok
+test_entire_scr_independent_structural_roundtrip (test_source_build.SourceBuildTests.test_entire_scr_independent_structural_roundtrip) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.607s
+
+OK
+PASS: direction, multi-notch, partial delta, bounds, foreground, removal, disable, thread scope
+./source/native/wheel/DevKitWheel.dll

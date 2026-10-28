@@ -1,0 +1,3202 @@
+Data ^{
+    CustomBridges ^{
+        2 ^{
+            BGI=Bm.FormLoad2.ShipPanel
+            PanelName=PanelEmptyBridge
+            Table=Bm.FormRuins.2WBtable
+        }
+    }
+    Script ^{
+        Mod_DevKit=1,Script.Mod_DevKit
+    }
+    ScriptLibs ^{
+        DevKitWheel ^{
+            Path=Mods\Tweaks\DevKit\Native\DevKitWheel.dll
+            WheelDisable=int,WheelDisable
+            WheelEnable=int,WheelEnable,int,int,int,int
+        }
+    }
+}
+BV ^{
+    OnLoad ^{
+        DevKit ^{
+            01=if(!IsScriptActive('Mod_DevKit')) ScriptRun(ShipStar(Player()), GetShipPlanet(Player()), 'Mod_DevKit');
+            02=if(InterfaceState('Ship','DevKitOpenButton') == 1) InterfaceState('Ship','DevKitOpenButton',3);
+        }
+    }
+}
+ML ^{
+    DevKitUI ~{
+        Border=0,0,1920,1080
+        Panel ~{
+            GraphBuf ^{
+                MouseBlocking=False
+                Name=BGBuf
+                Pos=0,0,9500
+                Size=1920,1080
+            }
+            Panel ^{
+                GraphButton ^{
+                    Caption=Закрыть
+                    CaptionAlignX=Center
+                    CaptionAlignY=CenterEx
+                    CaptionColor=14,48,65
+                    CaptionColorNormalA=0,58,86
+                    Font=Font.2SmallBold
+                    ImageDown=GI,Bm.FormShip2.DevKitNavD
+                    ImageNormal=GI,Bm.FormShip2.DevKitNavN
+                    ImageNormalA=GI,Bm.FormShip2.DevKitNavA
+                    Kind=Normal
+                    KindHit=Rect
+                    MouseBlocking=True
+                    MouseBlockingTest=True
+                    Name=Exit
+                    OnPressCode ~{
+                        0=CloseCustomForm();
+                    }
+                    Pos=338,434,-2050
+                    Size=98,32
+                }
+                GraphButton ^{
+                    Caption=Главное
+                    CaptionAlignX=Center
+                    CaptionAlignY=CenterEx
+                    CaptionColor=14,48,65
+                    CaptionColorNormalA=0,58,86
+                    Font=Font.2SmallBold
+                    ImageDown=GI,Bm.FormShip2.DevKitNavD
+                    ImageNormal=GI,Bm.FormShip2.DevKitNavN
+                    ImageNormalA=GI,Bm.FormShip2.DevKitNavA
+                    Kind=Normal
+                    KindHit=Rect
+                    MouseBlocking=True
+                    MouseBlockingTest=True
+                    Name=Home
+                    OnPressCode ~{
+                        0=CustomInterfaceState('DevKit_Page_0',1); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                    }
+                    Pos=24,434,-2050
+                    Size=98,32
+                }
+                Image ^{
+                    Image=GI,Bm.FormShip2.DevKitPanelBG
+                    MouseBlocking=True
+                    Name=DevKitBackdrop
+                    Pos=0,0,2000
+                    Size=460,480
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=Center
+                    Font=Font.2SmallBold
+                    MouseBlocking=False
+                    Name=Title
+                    Pos=24,22,-2000
+                    Size=412,30
+                    Text=DEVKIT / Функции тестирования
+                    TextColor=213,246,250
+                }
+                Label ^{
+                    AlignX=Left
+                    AlignY=Center
+                    Font=Font.2SmallBold
+                    MouseBlocking=False
+                    Name=MenuHint
+                    Pos=24,62,-2000
+                    Size=412,24
+                    Text=Колесо / PgUp, PgDn — страницы. Esc — закрыть.
+                    TextColor=32,72,88
+                }
+                MouseBlocking=True
+                Name=DevKitOverlayRoot
+                Panel ~{
+                    Name=DevKit_Page_0
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=True
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Получить оружие
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',22);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Телепортация в другую систему
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_1
+                        OnPressCode ~{
+                            001=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            002=devkit_wheel_disable();
+                            003=for(int devkit_sector=0; devkit_sector<GalaxySectors(); devkit_sector=devkit_sector+1)
+                            004={
+                            005=if(!SectorVisible(GalaxySectors(devkit_sector))) SectorVisible(GalaxySectors(devkit_sector),1);
+                            006=}
+                            007=if(ShipOrder(Player()) == 7) OrderNone(Player());
+                            008=RunChildForm('Galaxy',0);
+                            009=if(ShipOrder(Player()) == 7 && ShipOrderObj(Player()))
+                            010={
+                            011=dword devkit_target_star = ShipOrderObj(Player());
+                            012=unknown devkit_places = newarray(1);
+                            013=unknown devkit_place_codes = newarray(1);
+                            014=devkit_places[0] = 'Космос';
+                            015=devkit_place_codes[0] = 2;
+                            016=dword devkit_list_planet = 0;
+                            017=if(StarOwner(devkit_target_star) != 1)
+                            018={
+                            019=for(int devkit_planet_index=0; devkit_planet_index<StarPlanets(devkit_target_star) && devkit_planet_index<251; devkit_planet_index=devkit_planet_index+1)
+                            020={
+                            021=devkit_list_planet = StarPlanets(devkit_target_star,devkit_planet_index);
+                            022=if(devkit_list_planet && PlanetOwner(devkit_list_planet) != 6 && PlanetOwner(devkit_list_planet) != 5 && PlanetPopulation(devkit_list_planet) > 0)
+                            023={
+                            024=ArrayAdd(devkit_places,PlanetName(devkit_list_planet));
+                            025=ArrayAdd(devkit_place_codes,4+devkit_planet_index);
+                            026=}
+                            027=}
+                            028=}
+                            029=int devkit_place_choice = ListBox('Куда переместиться в системе ' + StarName(devkit_target_star) + '?',devkit_places);
+                            030=if(devkit_place_choice >= 0 && devkit_place_choice < ArrayDim(devkit_place_codes))
+                            031={
+                            032=SFT('[DevKit V18] DESTINATION_SELECTED');
+                            033=CloseCustomForm(0+devkit_place_codes[devkit_place_choice]);
+                            034=}
+                            035=else
+                            036={
+                            037=OrderNone(Player());
+                            038=}
+                            039=}
+                            040=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            041=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Убить пиратский клан
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',72);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить оборудование
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',13);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Быстрое оснащение для тестирования
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',67);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить деньги
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',14);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить артефакты
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_0_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',16);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_0
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',1); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_0
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Главное меню  /  1/4
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_1
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Создать ЧД
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',29);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить ноды
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',30);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Создать планету
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',32);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Загрузить антидоминаторские программы
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',33);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Увеличить размер корпуса
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',34);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Починить оборудование
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',35);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Консоль
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_1_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',38);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_1
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',1); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_1
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',1); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_1
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Главное меню  /  2/4
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_2
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Открыть всю карту
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',45);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить микромодули
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',19);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Заправить бак
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',20);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Повысить звание
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',25);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Создать базы
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',28);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Выход
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',68);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Выход
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_2_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',74);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_2
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',1); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_2
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',1); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_2
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Главное меню  /  3/4
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_3
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Изменить ГТУ
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_3_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',78);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_3
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',1); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_3
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Главное меню  /  4/4
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_4
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Малоки
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_4_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',1);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Пеленги
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_4_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',2);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Люди
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_4_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',3);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Феяне
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_4_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',4);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Гаальцы
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_4_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',5);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_4
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Раса оборудования
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_5
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Повысить научное звание
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',75);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить топливный бак
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',0);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить двигатель
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',6);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить сканер
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',7);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить радар
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',8);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить ремонтный дроид
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',9);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить захват
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_5_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',10);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_5
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',1); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_5
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Оборудование  /  1/3
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_6
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Получить корпус
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',11);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить ГЗП
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',12);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Получить всё сразу
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',21);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Корпус Клещ (Expansion)
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',36);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Корпус Тень Империи
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',39);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Читерный двигатель
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',57);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Читерный радар
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_6_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',66);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_6
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',1); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_6
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',1); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_6
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Оборудование  /  2/3
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_7
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Из модуля ExpAcryn
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_7_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',73);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_7
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',1); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_7
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Оборудование  /  3/3
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_8
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Ввести нужную сумму
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_8_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',15);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_8
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Деньги
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_9
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Транклюкатор
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_9_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',17);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Оригинальные
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_9_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',18);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Голопроектор, Пульсар, Блинкер (мод…
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_9_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',44);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Из модуля ExpArts
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_9_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',69);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_9
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Артефакты
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_10
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=ФизГан (Expansion)
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_10_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',37);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Мабокит (Evolution)
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_10_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',23);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Оригинальное
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_10_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',24);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_10
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Оружие
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_11
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Повысить научное звание
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',76);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Повысить научное звание
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',77);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Повысить коалиционное
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',26);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Повысить пиратское
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',27);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Стать Бароном
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',47);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Стать Адмиралом
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_11_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',48);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_11
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Звания
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_12
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Ввести нужное количество
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_12_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',31);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_12
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Размер корпуса
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_13
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Военный
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_13_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',40);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Пиратский
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_13_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',41);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Транспортный
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_13_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',42);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Рейнджер
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_13_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',43);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_13
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Тип корпуса
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_14
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Ввести нужный размер
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_14_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',46);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_14
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Размер
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_15
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=A
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',49);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=B
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',50);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=C
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',51);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=D
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',52);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=E
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',53);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=F
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',54);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=G
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_15_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',55);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_15
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',1); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_15
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Антидоминаторские программы  /  1/2
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_16
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=H
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_16_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',56);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_16
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',1); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_16
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Антидоминаторские программы  /  2/2
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_17
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Малоки
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',58);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Пеленги
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_1
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',59);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,172,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Люди
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_2
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',60);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,214,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Феяне
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_3
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',61);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,256,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Гаальцы
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_4
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',62);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,298,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Доминаторы
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_5
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',63);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,340,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=Неизвестные
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_17_6
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',64);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,382,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=>
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Next_17
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',0); CustomInterfaceState('DevKit_Page_18',1); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=236,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_17
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Создание баз  /  1/2
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_18
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Пираты
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_18_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',65);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    GraphButton ^{
+                        Caption=<
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitArrowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitArrowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitArrowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=Prev_18
+                        OnPressCode ~{
+                            0=CustomInterfaceState('DevKit_Page_0',0); CustomInterfaceState('DevKit_Page_1',0); CustomInterfaceState('DevKit_Page_2',0); CustomInterfaceState('DevKit_Page_3',0); CustomInterfaceState('DevKit_Page_4',0); CustomInterfaceState('DevKit_Page_5',0); CustomInterfaceState('DevKit_Page_6',0); CustomInterfaceState('DevKit_Page_7',0); CustomInterfaceState('DevKit_Page_8',0); CustomInterfaceState('DevKit_Page_9',0); CustomInterfaceState('DevKit_Page_10',0); CustomInterfaceState('DevKit_Page_11',0); CustomInterfaceState('DevKit_Page_12',0); CustomInterfaceState('DevKit_Page_13',0); CustomInterfaceState('DevKit_Page_14',0); CustomInterfaceState('DevKit_Page_15',0); CustomInterfaceState('DevKit_Page_16',0); CustomInterfaceState('DevKit_Page_17',1); CustomInterfaceState('DevKit_Page_18',0); CustomInterfaceState('DevKit_Page_19',0); CustomInterfaceState('DevKit_Page_20',0);
+                        }
+                        Pos=180,434,-2050
+                        Size=44,32
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_18
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Создание баз  /  2/2
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_19
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Выход
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_19_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',74);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_19
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Выход
+                        TextColor=18,73,92
+                    }
+                }
+                Panel ~{
+                    Name=DevKit_Page_20
+                    Pos=0,0,-2050
+                    Size=460,480
+                    Active=False
+                    MouseBlocking=False
+                    GraphButton ^{
+                        Caption=Назад
+                        CaptionAlignX=Center
+                        CaptionAlignY=CenterEx
+                        CaptionColor=14,48,65
+                        CaptionColorNormalA=0,58,86
+                        Font=Font.2SmallBold
+                        ImageDown=GI,Bm.FormShip2.DevKitRowD
+                        ImageNormal=GI,Bm.FormShip2.DevKitRowN
+                        ImageNormalA=GI,Bm.FormShip2.DevKitRowA
+                        Kind=Normal
+                        KindHit=Rect
+                        MouseBlocking=True
+                        MouseBlockingTest=True
+                        Name=DevKit_Choice_20_0
+                        OnPressCode ~{
+                            pre0=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+                            pre1=devkit_wheel_disable();
+                            0=RunFunctionFromScript('Mod_DevKit','DevKitAction',71);
+                            post0=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+                            post1=devkit_wheel_enable(730,300,1190,780);
+                        }
+                        Pos=24,130,-2050
+                        Size=412,38
+                    }
+                    Label ^{
+                        AlignX=Left
+                        AlignY=Center
+                        Font=Font.2SmallBold
+                        MouseBlocking=False
+                        Name=PageTitle_20
+                        Pos=24,96,-2000
+                        Size=412,24
+                        Text=Назад
+                        TextColor=18,73,92
+                    }
+                }
+                Pos=730,300,-1000
+                Size=460,480
+            }
+            Size=1920,1080
+            Pos=0,0,0
+            OnKey ~{
+                001=if(KEY == 27) CloseCustomForm();
+                002=if(KEY == 33 || KEY == 34)
+                003={
+                004=int devkit_current_page = -1;
+                005=int devkit_next_page = -1;
+                006=if(CustomInterfaceState('DevKit_Page_0') == 1) devkit_current_page = 0;
+                007=if(CustomInterfaceState('DevKit_Page_1') == 1) devkit_current_page = 1;
+                008=if(CustomInterfaceState('DevKit_Page_2') == 1) devkit_current_page = 2;
+                009=if(CustomInterfaceState('DevKit_Page_3') == 1) devkit_current_page = 3;
+                010=if(CustomInterfaceState('DevKit_Page_4') == 1) devkit_current_page = 4;
+                011=if(CustomInterfaceState('DevKit_Page_5') == 1) devkit_current_page = 5;
+                012=if(CustomInterfaceState('DevKit_Page_6') == 1) devkit_current_page = 6;
+                013=if(CustomInterfaceState('DevKit_Page_7') == 1) devkit_current_page = 7;
+                014=if(CustomInterfaceState('DevKit_Page_8') == 1) devkit_current_page = 8;
+                015=if(CustomInterfaceState('DevKit_Page_9') == 1) devkit_current_page = 9;
+                016=if(CustomInterfaceState('DevKit_Page_10') == 1) devkit_current_page = 10;
+                017=if(CustomInterfaceState('DevKit_Page_11') == 1) devkit_current_page = 11;
+                018=if(CustomInterfaceState('DevKit_Page_12') == 1) devkit_current_page = 12;
+                019=if(CustomInterfaceState('DevKit_Page_13') == 1) devkit_current_page = 13;
+                020=if(CustomInterfaceState('DevKit_Page_14') == 1) devkit_current_page = 14;
+                021=if(CustomInterfaceState('DevKit_Page_15') == 1) devkit_current_page = 15;
+                022=if(CustomInterfaceState('DevKit_Page_16') == 1) devkit_current_page = 16;
+                023=if(CustomInterfaceState('DevKit_Page_17') == 1) devkit_current_page = 17;
+                024=if(CustomInterfaceState('DevKit_Page_18') == 1) devkit_current_page = 18;
+                025=if(CustomInterfaceState('DevKit_Page_19') == 1) devkit_current_page = 19;
+                026=if(CustomInterfaceState('DevKit_Page_20') == 1) devkit_current_page = 20;
+                027=if(KEY == 34 && devkit_current_page == 0) devkit_next_page = 1;
+                028=if(KEY == 33 && devkit_current_page == 1) devkit_next_page = 0;
+                029=if(KEY == 34 && devkit_current_page == 1) devkit_next_page = 2;
+                030=if(KEY == 33 && devkit_current_page == 2) devkit_next_page = 1;
+                031=if(KEY == 34 && devkit_current_page == 2) devkit_next_page = 3;
+                032=if(KEY == 33 && devkit_current_page == 3) devkit_next_page = 2;
+                033=if(KEY == 34 && devkit_current_page == 5) devkit_next_page = 6;
+                034=if(KEY == 33 && devkit_current_page == 6) devkit_next_page = 5;
+                035=if(KEY == 34 && devkit_current_page == 6) devkit_next_page = 7;
+                036=if(KEY == 33 && devkit_current_page == 7) devkit_next_page = 6;
+                037=if(KEY == 34 && devkit_current_page == 15) devkit_next_page = 16;
+                038=if(KEY == 33 && devkit_current_page == 16) devkit_next_page = 15;
+                039=if(KEY == 34 && devkit_current_page == 17) devkit_next_page = 18;
+                040=if(KEY == 33 && devkit_current_page == 18) devkit_next_page = 17;
+                041=if(devkit_next_page >= 0)
+                042={
+                043=CustomInterfaceState('DevKit_Page_0',devkit_next_page == 0);
+                044=CustomInterfaceState('DevKit_Page_1',devkit_next_page == 1);
+                045=CustomInterfaceState('DevKit_Page_2',devkit_next_page == 2);
+                046=CustomInterfaceState('DevKit_Page_3',devkit_next_page == 3);
+                047=CustomInterfaceState('DevKit_Page_4',devkit_next_page == 4);
+                048=CustomInterfaceState('DevKit_Page_5',devkit_next_page == 5);
+                049=CustomInterfaceState('DevKit_Page_6',devkit_next_page == 6);
+                050=CustomInterfaceState('DevKit_Page_7',devkit_next_page == 7);
+                051=CustomInterfaceState('DevKit_Page_8',devkit_next_page == 8);
+                052=CustomInterfaceState('DevKit_Page_9',devkit_next_page == 9);
+                053=CustomInterfaceState('DevKit_Page_10',devkit_next_page == 10);
+                054=CustomInterfaceState('DevKit_Page_11',devkit_next_page == 11);
+                055=CustomInterfaceState('DevKit_Page_12',devkit_next_page == 12);
+                056=CustomInterfaceState('DevKit_Page_13',devkit_next_page == 13);
+                057=CustomInterfaceState('DevKit_Page_14',devkit_next_page == 14);
+                058=CustomInterfaceState('DevKit_Page_15',devkit_next_page == 15);
+                059=CustomInterfaceState('DevKit_Page_16',devkit_next_page == 16);
+                060=CustomInterfaceState('DevKit_Page_17',devkit_next_page == 17);
+                061=CustomInterfaceState('DevKit_Page_18',devkit_next_page == 18);
+                062=CustomInterfaceState('DevKit_Page_19',devkit_next_page == 19);
+                063=CustomInterfaceState('DevKit_Page_20',devkit_next_page == 20);
+                064=}
+                065=}
+            }
+            Name=DevKitScreen
+            MouseBlocking=True
+        }
+        CodeBeforeRun ~{
+            001=unknown devkit_wheel_enable = ImportedFunction('DevKitWheel','WheelEnable');
+            002=devkit_wheel_enable(730,300,1190,780);
+        }
+        CodeAfterRun ~{
+            001=unknown devkit_wheel_disable = ImportedFunction('DevKitWheel','WheelDisable');
+            002=devkit_wheel_disable();
+        }
+    }
+    Planet ^{
+        Panel ^{
+            Panel ^{
+                OnKey ^{
+                    CheatsInput ^{
+                        01=for(int single_pass = 0; single_pass == 0; single_pass = 1)
+                        01 ^{
+                            DevKit ^{
+                                01=if(~findsubstr(InterfaceText('StarMap', 'CheatsInputField'), 'DEVKIT'))
+                                01 ^{
+                                    01=if(DevKitVisibility)
+                                    01 ^{
+                                        01=DevKitVisibility = 0;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>OFF</color>');
+                                    }
+                                    02=else if(!DevKitVisibility)
+                                    02 ^{
+                                        01=DevKitVisibility = 1;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>ON</color>');
+                                    }
+                                    03=InterfaceText('StarMap', 'CheatsInputField', '');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    PlanetNO ^{
+        Panel ^{
+            Panel ^{
+                OnKey ^{
+                    CheatsInput ^{
+                        01=for(int single_pass = 0; single_pass == 0; single_pass = 1)
+                        01 ^{
+                            DevKit ^{
+                                01=if(~findsubstr(InterfaceText('StarMap', 'CheatsInputField'), 'DEVKIT'))
+                                01 ^{
+                                    01=if(DevKitVisibility)
+                                    01 ^{
+                                        01=DevKitVisibility = 0;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>OFF</color>');
+                                    }
+                                    02=else if(!DevKitVisibility)
+                                    02 ^{
+                                        01=DevKitVisibility = 1;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>ON</color>');
+                                    }
+                                    03=InterfaceText('StarMap', 'CheatsInputField', '');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    RuinsTalk ^{
+        Panel ^{
+            CustomBridges ^{
+                Panel ^{
+                    Active=False
+                    GAI ^{
+                        Active=False
+                        AlignX=Center
+                        AlignY=Center
+                        Frame=[75,0-99]
+                        Image=Bm.Gov.2PeopleHoloAnim0a
+                        ImageFirst=Bm.Gov.2PeopleHoloAnim0i
+                        Name=Panel_Anim0
+                        PBuf=True
+                        Pos=546,127,-2
+                        Size=398,654
+                    }
+                    GAI ^{
+                        Active=False
+                        AlignX=Center
+                        AlignY=Center
+                        Frame=[75,0-99]
+                        Image=Bm.Gov.2PeopleHoloAnim1a
+                        ImageFirst=Bm.Gov.2PeopleHoloAnim1i
+                        Name=Panel_Anim1
+                        PBuf=True
+                        Pos=546,127,-2
+                        Size=398,654
+                    }
+                    GAI ^{
+                        Active=False
+                        AlignX=Center
+                        AlignY=Center
+                        Frame=[75,0-99]
+                        Image=Bm.GovHD.PeopleHoloAnim0a
+                        ImageFirst=Bm.GovHD.PeopleHoloAnim0i
+                        Name=PanelHD_Anim0
+                        PBuf=True
+                        Pos=0,-81,-2
+                        Size=497,817
+                    }
+                    GAI ^{
+                        Active=False
+                        AlignX=Center
+                        AlignY=Center
+                        Frame=[75,0-99]
+                        Image=Bm.GovHD.PeopleHoloAnim1a
+                        ImageFirst=Bm.GovHD.PeopleHoloAnim1i
+                        Name=PanelHD_Anim1
+                        PBuf=True
+                        Pos=0,-81,-2
+                        Size=497,817
+                    }
+                    Image ^{
+                        Image=GI,Bm.FormRuins.2WBtable
+                        Name=Table
+                        Pos=0,0,-3
+                        Size=834,662
+                    }
+                    Name=PanelEmptyBridge
+                    Pos=0,0,2000
+                    Size=1024,768
+                }
+            }
+            Panel ^{
+                OnKey ^{
+                    CheatsInput ^{
+                        01=for(int single_pass = 0; single_pass == 0; single_pass = 1)
+                        01 ^{
+                            DevKit ^{
+                                01=if(~findsubstr(InterfaceText('StarMap', 'CheatsInputField'), 'DEVKIT'))
+                                01 ^{
+                                    01=if(DevKitVisibility)
+                                    01 ^{
+                                        01=DevKitVisibility = 0;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>OFF</color>');
+                                    }
+                                    02=else if(!DevKitVisibility)
+                                    02 ^{
+                                        01=DevKitVisibility = 1;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>ON</color>');
+                                    }
+                                    03=InterfaceText('StarMap', 'CheatsInputField', '');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    Ship ^{
+        Panel ^{
+            GraphBuf ^{
+            }
+            GraphButton ^{
+                Help=FormShip.HelpDestrInto
+                ImageDown=GI,Bm.FormShip2.ButBrigdeD
+                ImageNormal=GI,Bm.FormShip2.ButBrigdeN
+                ImageNormalA=GI,Bm.FormShip2.ButBrigdeA
+                Kind=Normal
+                KindHit=Rect
+                Name=CustomBridgeInto
+                Pos=377,420,6
+                Size=80,25
+                Style=Style.GB.SoundNormal
+            }
+            Panel ^{
+                OnKey ^{
+                    CheatsInput ^{
+                        01=for(int single_pass = 0; single_pass == 0; single_pass = 1)
+                        01 ^{
+                            DevKit ^{
+                                01=if(~findsubstr(InterfaceText('StarMap', 'CheatsInputField'), 'DEVKIT'))
+                                01 ^{
+                                    01=if(DevKitVisibility)
+                                    01 ^{
+                                        01=DevKitVisibility = 0;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>OFF</color>');
+                                    }
+                                    02=else if(!DevKitVisibility)
+                                    02 ^{
+                                        01=DevKitVisibility = 1;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>ON</color>');
+                                    }
+                                    03=InterfaceText('StarMap', 'CheatsInputField', '');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Panel ^{
+            }
+            Panel ^{
+            }
+            Panel ^{
+                Active=True
+                GraphButton ^{
+                    ImageDown=GI,Bm.FormShip2.DevKitEndOpenD
+                    ImageNormal=GI,Bm.FormShip2.DevKitEndOpenN
+                    ImageNormalA=GI,Bm.FormShip2.DevKitEndOpenA
+                    Kind=Normal
+                    KindHit=Rect
+                    MouseBlocking=True
+                    MouseBlockingTest=True
+                    Name=DevKitOpenButton
+                    OnPressCode ~{
+                        01=int devkit_result = OpenCustomForm('DevKitUI');
+                        02=if(devkit_result == 2 || (devkit_result >= 4 && devkit_result < 255))
+                        03={
+                        04=InterfaceState('Ship','DevKitOpenButton',devkit_result);
+                        05=SFT('[DevKit V15] CLOSE_OLD_FORMS');
+                        06=if(PlayerBridge()) PlayerBridge(0);
+                        07=PlayerBridge(2);
+                        08=PlayerBridge(0);
+                        09=FormChange('StarMap');
+                        10=}
+                        11=else
+                        12={
+                        13=if(CurrentForm() == 'Ship') UpdateFormShip();
+                        14=}
+                    }
+                    Pos=1120,210,-1800
+                    Size=48,50
+                    Style=Style.GB.SoundNormal
+                }
+                MouseBlocking=False
+                Name=TestHitPanels
+                Pos=0,0,-1700
+                Size=1920,1080
+            }
+        }
+    }
+    StarMap ^{
+        Panel ^{
+            OnMouseEnterCode ^{
+                DevKitTeleportOnce ~{
+                    001=int devkit_request = InterfaceState('Ship','DevKitOpenButton');
+                    002=if(devkit_request == 2 || (devkit_request >= 4 && devkit_request < 255))
+                    003={
+                    004=InterfaceState('Ship','DevKitOpenButton',3);
+                    005=if(ShipOrder(Player()) == 7 && ShipOrderObj(Player()))
+                    006={
+                    007=dword devkit_destination = ShipOrderObj(Player());
+                    008=dword devkit_destination_planet = 0;
+                    009=int devkit_destination_index = devkit_request-4;
+                    010=if(devkit_request >= 4 && devkit_destination_index < StarPlanets(devkit_destination) && StarOwner(devkit_destination) != 1)
+                    011={
+                    012=devkit_destination_planet = StarPlanets(devkit_destination,devkit_destination_index);
+                    013=if(devkit_destination_planet)
+                    014={
+                    015=if(PlanetOwner(devkit_destination_planet) == 6 || PlanetOwner(devkit_destination_planet) == 5 || PlanetPopulation(devkit_destination_planet) <= 0) devkit_destination_planet = 0;
+                    016=}
+                    017=}
+                    018=OrderNone(Player());
+                    019=TransferShip(Player(),devkit_destination);
+                    020=ShipChangeStar(Player(),devkit_destination);
+                    021=if(devkit_destination_planet)
+                    022={
+                    023=TransferShip(Player(),devkit_destination_planet);
+                    024=SFT('[DevKit V18] ARRIVED_PLANET');
+                    025=FormChange('Planet');
+                    026=}
+                    027=else
+                    028={
+                    029=SFT('[DevKit V18] ARRIVED_SPACE');
+                    030=FormChange('StarMap');
+                    031=}
+                    032=}
+                    033=}
+                }
+            }
+            Panel ^{
+                OnKey ^{
+                    CheatsInput ^{
+                        01=for(int single_pass = 0; single_pass == 0; single_pass = 1)
+                        01 ^{
+                            DevKit ^{
+                                01=if(~findsubstr(InterfaceText('StarMap', 'CheatsInputField'), 'DEVKIT'))
+                                01 ^{
+                                    01=if(DevKitVisibility)
+                                    01 ^{
+                                        01=DevKitVisibility = 0;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>OFF</color>');
+                                    }
+                                    02=else if(!DevKitVisibility)
+                                    02 ^{
+                                        01=DevKitVisibility = 1;
+                                        02=MessageBox('DevKit dialog insert is now <color=0,50,200>ON</color>');
+                                    }
+                                    03=InterfaceText('StarMap', 'CheatsInputField', '');
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

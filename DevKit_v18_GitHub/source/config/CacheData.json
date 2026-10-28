@@ -1,0 +1,117 @@
+{
+  "format": "cachedata",
+  "seed": 123456789,
+  "root": {
+    "entries": [
+      {
+        "kind": "block",
+        "name": "Bm",
+        "value": {
+          "entries": [
+            {
+              "kind": "block",
+              "name": "FormShip2",
+              "value": {
+                "entries": [
+                  {
+                    "kind": "parameter",
+                    "name": "ButBrigdeA",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\ButBrigdeA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "ButBrigdeD",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\ButBrigdeD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "ButBrigdeN",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\ButBrigdeN.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitArrowA",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitArrowA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitArrowD",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitArrowD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitArrowN",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitArrowN.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitEndOpenA",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitEndOpenA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitEndOpenD",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitEndOpenD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitEndOpenN",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitEndOpenN.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitNavA",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitNavA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitNavD",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitNavD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitNavN",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitNavN.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitPanelBG",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitPanelBG.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitRowA",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitRowA.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitRowD",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitRowD.gi"
+                  },
+                  {
+                    "kind": "parameter",
+                    "name": "DevKitRowN",
+                    "value": "Mods\\Tweaks\\DevKit\\DATA\\FormShip2\\DevKitRowN.gi"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "block",
+        "name": "Script",
+        "value": {
+          "entries": [
+            {
+              "kind": "parameter",
+              "name": "Mod_DevKit",
+              "value": "Mods\\Tweaks\\DevKit\\DATA\\Script\\Mod_DevKit.scr"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
